@@ -1,51 +1,39 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
-public class grade {
-    String name;
-    String gradeLevel;
-    float gpa;
-    float Ugpa;
-    int choice;
+public class Grade {
 
-    Scanner i =new Scanner(System.in);
-    Scanner s =new Scanner(System.in);
-    grade()
+
+    public static void main (String[] args)
     {
-        System.out.println("Enter name:");
-        name=s.next();
-        System.out.println("Enter grade  level:");
-        gradeLevel=s.next();
-        System.out.println("Enter gpa:");
-        gpa=i.nextFloat();
+        Logger l = Logger.getLogger("kawin");
+        Scanner inputobj =new Scanner(System.in);
 
-        System.out.println("Do you want to update your gpa yes->1/no->2 ?");
-        choice=i.nextInt();
+        Scanner inp =new Scanner(System.in);
+        l.info("Enter name:");
+        String name=inputobj.next();
+        l.info("Enter grade  level:");
+        String gradeLevel=inputobj.next();
+        l.info("Enter gpa:");
+        float gpa=inputobj.nextFloat();
+        Greadopertions gradeobj = new Greadopertions(name,gradeLevel,gpa);
+        l.info("Do you want to update your gpa yes->1/no->2 ?");
+
+        int choice=inp.nextInt();
         if(choice==1)
         {
-            update();
-            show();
+            gradeobj.update();
+            gradeobj.show();
+        }
+        else if(choice==2)
+        {
+            gradeobj.show();
         }
         else
         {
-            show();
+            l.info("Sorry you have entered worng choice!!");
         }
-
-
-    }
-    void update()
-    {
-        System.out.println("enter yur updated gpa");
-        Ugpa=i.nextFloat();
-        gpa=Ugpa;
-    }
-    void show()
-    {
-        System.out.println(name+" has GPA of "+gpa);
-    }
-    public static void main (String[] args)
-    {
-        grade a = new grade();
     }
 }
